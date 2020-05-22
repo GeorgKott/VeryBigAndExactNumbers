@@ -1,0 +1,25 @@
+{
+    "name": "georgkott/verybigandexactnumbers",
+    "description": "Php library for work with big and exact numbers",
+    "keywords": [
+        "numbers", "big", "exact"
+    ],
+    "homepage": "https://github.com/GeorgKott/VeryBigAndExactNumbers",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Geo Kot",
+            "email": "geo@sarog.site"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+        	"georgkott\\verybigandexactnumbers\\":"src/"
+        }
+    }
+}
+
+
