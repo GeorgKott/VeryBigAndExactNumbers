@@ -11,13 +11,8 @@ class SumOperation extends OperationAbstract
         for($i=strlen($n1)-1;$i>=0;$i--){
             $sum = $n1[$i] + $n2[$i] + $add;
             if($sum >= 10){
-                if($i == 0){
-                    $number = strval($sum).$number;
-                }
-                else{
-                    $add = 1;
-                    $number = strval($sum%10).$number;
-                }
+                $add = 1;
+                $number = strval($sum%10).$number;
             }
             else{
                 $add = 0;
@@ -34,6 +29,7 @@ class SumOperation extends OperationAbstract
 
         list($this->resultRational,$add) = $this->sumN($this->r1,$this->r2,$add);
         list($this->resultNatural,$add) = $this->sumN($this->n1,$this->n2,$add);
+        $this->resultNatural = $add.$this->resultNatural;
     }
 
     public function result()

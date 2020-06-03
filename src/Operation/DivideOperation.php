@@ -59,6 +59,48 @@ class DivideOperation extends OperationAbstract
         return true;
     }
 
+    private function rounding($n = '',$r = '',$accuracy = 0)
+    {
+        if($accuracy >= strlen($r)){
+            return [$n,$r];
+        }
+        else{
+            $roundN = substr($r,-1);
+
+            if($roundN <=4){
+                return [$n,substr($r,0,-1)];
+            }
+            else{
+                $add = 1;
+
+                for($i=strlen($r)-2;$i>=0;$i--){
+                    $sum = $r[$i] + $add;
+                    if($sum >= 10){
+                        $add = 1;
+                        $r[$i] = strval($sum%10).$r[$i];
+                    }
+                    else{
+                        return [$n,substr($r,0,-1)];
+                    }
+                }
+
+                for($i=strlen($n)-1;$i>=0;$i--){
+                    $sum = $n[$i] + $add;
+                    if($sum >= 10){
+                        $add = 1;
+                        $n[$i] = strval($sum%10).$n[$i];
+                    }
+                    else{
+                        return [$n,substr($r,0,-1)];
+                    }
+                }
+
+                return [$add.$n,substr($r,0,-1)];
+
+            }
+        }
+    }
+
     private function div($number1 = '',$number2 = '',$accuracy = 20)
     {
         $natural = [];
@@ -69,7 +111,7 @@ class DivideOperation extends OperationAbstract
         $pn = 0;
         $offset = strlen($number2);
 
-        while($pn < $accuracy){
+        while($pn <= $accuracy+1){
             if($this->moreEqualDiv($str,$number2)){
                 if(!isset($natural[$pn])){
                     $natural[$pn] = 1;
@@ -109,8 +151,13 @@ class DivideOperation extends OperationAbstract
             }
         }
 
-        $this->resultNatural = $this->trimNumbers(substr($itog,0,-$pflag),'l');
-        $this->resultRational = $this->trimNumbers(substr($itog,-$pflag),'r');
+        $resultNatural = $this->trimNumbers(substr($itog,0,-$pflag),'l');
+        $resultRational = $this->trimNumbers(substr($itog,-$pflag),'r');
+
+        list($resultNatural,$resultRational) = $this->rounding($resultNatural,$resultRational,$accuracy);
+
+        $this->resultNatural = $resultNatural;
+        $this->resultRational = $resultRational;
     }
 
     private function divSub($n1 = '',$n2 = '')

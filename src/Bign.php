@@ -19,10 +19,10 @@ class BigN
 
             if(!empty($m[0][0]) || $m[0][0] == "0"){
                 if(!empty($m[1][0])){
-                    $this->sign = 0;
+                    $this->sign = '0';
                 }
                 else{
-                    $this->sign = 1;
+                    $this->sign = '1';
                 }
 
                 $natural = $this->trimNumbers($m[2][0],'l');
@@ -66,8 +66,8 @@ class BigN
                 $this->naturalNumber = $this->trimNumbers($natural,'l');
                 $this->rationalNumber = $this->trimNumbers($rational,'r');
 
-                if($this->naturalNumber === "0" && $this->rationalNumber === "0" && $this->sign === 0){
-                    $this->sign = 1;
+                if($this->naturalNumber === "0" && $this->rationalNumber === "0" && $this->sign === '0'){
+                    $this->sign = '1';
                 }
             }
             else{
@@ -92,7 +92,7 @@ class BigN
             $sign = '-';
         }
 
-        echo $sign.$this->naturalNumber.'.'.$this->rationalNumber;
+        echo $sign.$this->naturalNumber.'.'.$this->rationalNumber."\n";
     }
 
     /*
@@ -109,7 +109,7 @@ class BigN
 
         $this->naturalNumber = $this->trimNumbers($natural,'l');
         $this->rationalNumber = $this->trimNumbers($rational,'r');
-        $this->sign = $sign;
+        $this->sign = ($this->naturalNumber === '0' && $this->rationalNumber === '0')?'1':$sign;
     }
 
     /*
@@ -126,7 +126,7 @@ class BigN
 
         $this->naturalNumber = $this->trimNumbers($natural,'l');
         $this->rationalNumber = $this->trimNumbers($rational,'r');
-        $this->sign = $sign;
+        $this->sign = ($this->naturalNumber === '0' && $this->rationalNumber === '0')?'1':$sign;
     }
 
     /*
@@ -140,7 +140,7 @@ class BigN
 
         $this->naturalNumber = $this->trimNumbers($natural,'l');
         $this->rationalNumber = $this->trimNumbers($rational,'r');
-        $this->sign = $sign;
+        $this->sign = ($this->naturalNumber === '0' && $this->rationalNumber === '0')?'1':$sign;
     }
 
     /*
@@ -154,7 +154,7 @@ class BigN
 
         $this->naturalNumber = $this->trimNumbers($natural,'l');
         $this->rationalNumber = $this->trimNumbers($rational,'r');
-        $this->sign = $sign;
+        $this->sign = ($this->naturalNumber === '0' && $this->rationalNumber === '0')?'1':$sign;
     }
 
     /*
